@@ -193,38 +193,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   })
 })
 
-// Form submission - send to WhatsApp
-const whatsappNumber = "971581071893"
-const contactForms = document.querySelectorAll("form[data-contact-form]")
-
-if (contactForms.length) {
-  contactForms.forEach((form) => {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault()
-
-      const formData = new FormData(form)
-      const name = formData.get("name")?.trim()
-      const email = formData.get("email")?.trim()
-      const phone = formData.get("phone")?.trim()
-      const service = formData.get("service")?.trim()
-      const message = formData.get("message")?.trim()
-
-      const messageLines = [
-        name ? `Name: ${name}` : null,
-        email ? `Email: ${email}` : null,
-        phone ? `Phone: ${phone}` : null,
-        service ? `Service: ${service}` : null,
-        message ? `Message: ${message}` : null,
-      ].filter(Boolean)
-
-      const whatsappText = encodeURIComponent(messageLines.join("\n"))
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`
-
-      window.open(whatsappUrl, "_blank")
-      form.reset()
-    })
-  })
-}
 
 // Gallery hero video controls
 const galleryHero = document.querySelector(".gallery-hero")
