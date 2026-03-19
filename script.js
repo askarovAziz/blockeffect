@@ -569,16 +569,3 @@ if (footerLogoLink) {
     }
   });
 }
-
-// Page loader
-const pageLoader = document.getElementById('pageLoader');
-
-if (pageLoader) {
-  const hideLoader = () => pageLoader.classList.add('hidden');
-
-  window.addEventListener('load', () => {
-    setTimeout(hideLoader, 1000);
-  });
-
-  setTimeout(hideLoader, 1500);
-}
