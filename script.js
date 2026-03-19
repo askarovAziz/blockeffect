@@ -134,47 +134,6 @@ if (slides.length && prevBtn && nextBtn && sliderDots) {
   }
 }
 
-// Animated Counter
-const animateCounter = (element) => {
-  const target = Number.parseInt(element.getAttribute("data-target"))
-  const duration = 2000
-  const increment = target / (duration / 16)
-  let current = 0
-
-  const updateCounter = () => {
-    current += increment
-    if (current < target) {
-      element.textContent = Math.floor(current)
-      requestAnimationFrame(updateCounter)
-    } else {
-      element.textContent = target + (target >= 1000 ? "+" : "")
-    }
-  }
-
-  updateCounter()
-}
-
-// Intersection Observer for stats animation
-const statsObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const statNumbers = entry.target.querySelectorAll(".stat-number")
-        statNumbers.forEach((num) => {
-          animateCounter(num)
-        })
-        statsObserver.unobserve(entry.target)
-      }
-    })
-  },
-  { threshold: 0.5 },
-)
-
-const statsSection = document.querySelector(".stats-section")
-if (statsSection) {
-  statsObserver.observe(statsSection)
-}
-
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
