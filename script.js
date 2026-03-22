@@ -153,6 +153,29 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 })
 
 
+
+const annotateVatIncluded = () => {
+  document.querySelectorAll('.price').forEach((price) => {
+    if (price.querySelector('.vat') || !/AED\s*\d/i.test(price.textContent)) return
+
+    const amount = price.textContent.trim()
+    price.textContent = ''
+    price.classList.add('price-stack')
+
+    const amountLabel = document.createElement('span')
+    amountLabel.className = 'price-amount'
+    amountLabel.textContent = amount
+
+    const vatLabel = document.createElement('span')
+    vatLabel.className = 'vat'
+    vatLabel.textContent = 'VAT included'
+
+    price.append(amountLabel, vatLabel)
+  })
+}
+
+annotateVatIncluded()
+
 // Gallery hero video controls
 const galleryHero = document.querySelector(".gallery-hero")
 
